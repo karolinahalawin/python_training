@@ -12,23 +12,23 @@ class TestAddContact(unittest.TestCase):
 
     def test_add_contact(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
-        self.open_new_contact_page(wd)
         self.create_contact(wd, Contact(first_name="first name", middle_name="middle name", last_name="last name",
-                            nickname="nickname", title="title", company="company",
-                            address="street 1/10, 01-059 Warsaw", phone_home="22 837 94 83", phone_mobile="738 928 736",
-                            phone_work="938 728 738", fax="22 948 03 84", email_1="email1@gmail.com",
-                            email_2="email2@gmail.com", email_3="email3@gmail.com", homepage="www.testingpython.com",
-                            birthday_day="13", birthday_month="September", birthday_year="1990", anniversary_day="14",
-                            anniversary_month="November", anniversary_year="2020",
-                            address_2="street 9/33, 03-254 Warsaw", phone_2="22 474 94 73", notes="notes"))
+                                        nickname="nickname", title="title", company="company",
+                                        address="street 1/10, 01-059 Warsaw", phone_home="22 837 94 83",
+                                        phone_mobile="738 928 736", phone_work="938 728 738", fax="22 948 03 84",
+                                        email_1="email1@gmail.com", email_2="email2@gmail.com",
+                                        email_3="email3@gmail.com", homepage="www.testingpython.com",
+                                        birthday_day="13", birthday_month="September", birthday_year="1990",
+                                        anniversary_day="14", anniversary_month="November", anniversary_year="2020",
+                                        address_2="street 9/33, 03-254 Warsaw", phone_2="22 474 94 73", notes="notes"))
         self.logout(wd)
 
     def logout(self, wd):
         wd.find_element_by_link_text("Logout").click()
 
     def create_contact(self, wd, contact):
+        self.open_new_contact_page(wd)
         # fill contact form
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -102,6 +102,7 @@ class TestAddContact(unittest.TestCase):
         wd.find_element_by_link_text("add new").click()
 
     def login(self, wd, username, password):
+        self.open_home_page(wd)
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
