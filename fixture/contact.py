@@ -61,10 +61,13 @@ class ContactHelper:
             Select(wd.find_element_by_name(field_name)).select_by_visible_text(value)
             wd.find_element_by_xpath("//option[@value='13']").click()
 
-    def edit_first_contact(self, new_contact_data):
+    def edit_first_contact(self):
+        self.edit_contact_by_index(0)
+
+    def edit_contact_by_index(self, index, new_contact_data):
         wd = self.app.wd
         self.open_contacts_page()
-        self.select_first_contact()
+        self.select_contact_by_index(index)
         # click on details button
         wd.find_element_by_xpath("//img[@alt='Details']").click()
         # click on modify button
@@ -78,10 +81,17 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()
 
+    def select_contact_by_index(self, index):
+        wd = self.app.wd
+        wd.find_elements_by_name("selected[]")[index].click()
+
     def delete_first_contact(self):
+        self.delete_contact_by_index(0)
+
+    def delete_contact_by_index(self, index):
         wd = self.app.wd
         self.open_contacts_page()
-        self.select_first_contact()
+        self.select_contact_by_index(index)
         # click on details button
         wd.find_element_by_xpath("//img[@alt='Details']").click()
         # click on modify button
