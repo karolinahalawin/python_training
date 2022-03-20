@@ -4,7 +4,7 @@ class Contact:
                  address=None, phone_home=None, phone_mobile=None, phone_work=None, fax=None, email_1=None,
                  email_2=None, email_3=None, homepage=None, birthday_day=None, birthday_month=None, birthday_year=None,
                  anniversary_day=None, anniversary_month=None, anniversary_year=None, address_2=None, phone_2=None,
-                 notes=None):
+                 notes=None, id=None):
         self.first_name = first_name
         self.middle_name = middle_name
         self.last_name = last_name
@@ -29,3 +29,4 @@ class Contact:
         self.address_2 = address_2
         self.phone_2 = phone_2
         self.notes = notes
+        self.id = id
