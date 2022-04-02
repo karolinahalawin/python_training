@@ -15,30 +15,20 @@ def random_numbers(prefix, maxlen):
     return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
 
 
-testdata = [
-    Contact(first_name=first_name, middle_name=middle_name, last_name=last_name, nickname=nickname, title=title,
-            company=company, address=address, phone_home=phone_home, phone_mobile=phone_mobile, phone_work=phone_work,
-            fax=fax, email_1=email_1, email_2=email_2, email_3=email_3, homepage=homepage, address_2=address_2,
-            phone_2=phone_2, notes=notes)
-    for first_name in ["", random_string("first name", 10)]
-    for middle_name in ["", random_string("middle name", 10)]
-    for last_name in ["", random_string("last name", 10)]
-    for nickname in ["", random_string("nickname", 10)]
-    for title in ["", random_string("title", 5)]
-    for company in ["", random_string("company", 10)]
-    for address in ["", random_string("address", 20)]
-    for phone_home in ["", random_numbers("22", 7)]
-    for phone_mobile in ["", random_numbers("22", 7)]
-    for phone_work in ["", random_numbers("22", 7)]
-    for fax in ["", random_numbers("22", 7)]
-    for email_1 in ["", random_string("email1", 10)]
-    for email_2 in ["", random_string("email2", 10)]
-    for email_3 in ["", random_string("email2", 10)]
-    for homepage in ["", random_string("homepage", 10)]
-    for address_2 in ["", random_string("address2", 10)]
-    for phone_2 in ["", random_numbers("22", 7)]
-    for notes in ["", random_string("notes", 20)]
-]
+testdata = [Contact(first_name="", middle_name="", last_name="", nickname="", title="", company="", address="",
+                    phone_home="", phone_mobile="", phone_work="", fax="", email_1="", email_2="", email_3="",
+                    homepage="", address_2="", phone_2="", notes="")] + [
+               Contact(first_name=random_string("first name", 10), middle_name=random_string("middle name", 10),
+                       last_name=random_string("last name", 10), nickname=random_string("nickname", 10),
+                       title=random_string("title", 5), company=random_string("company", 10),
+                       address=random_string("address", 20), phone_home=random_numbers("22", 7),
+                       phone_mobile=random_numbers("22", 7), phone_work=random_numbers("22", 7),
+                       fax=random_numbers("22", 7), email_1=random_string("email1", 10),
+                       email_2=random_string("email2", 10), email_3=random_string("email2", 10),
+                       homepage=random_string("homepage", 10), address_2=random_string("address2", 10),
+                       phone_2=random_numbers("22", 7), notes=random_string("notes", 20))
+               for i in range(5)
+           ]
 
 
 @pytest.mark.parametrize("contact", testdata, ids=[repr(x) for x in testdata])
